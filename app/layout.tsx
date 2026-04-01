@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   title: 'Dogwood Landscaping & Gardening | Professional Landscape Services',
   description: 'Transform your outdoor space with Dogwood Landscaping & Gardening. We offer professional landscaping, garden design, lawn care, and maintenance services.',
   keywords: ['landscaping', 'gardening', 'lawn care', 'garden design', 'outdoor living', 'landscape maintenance'],
+  verification: {
+    google: 'nAeXbEjW_ftICnKZ3Ol4sOrIbjI2c68jOaOjCdH1T10',
+  },
   icons: {
     icon: [
       {
