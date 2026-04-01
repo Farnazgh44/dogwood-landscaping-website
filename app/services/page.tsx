@@ -3,14 +3,14 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { AnimatedSection } from '@/components/animated-section'
-import { 
-  TreeDeciduous, Leaf, Shovel, Sparkles, Droplets, Scissors, 
-  ArrowRight, CheckCircle2, Clock, Shield, Award 
+import {
+  TreeDeciduous, Leaf, Sparkles, Scissors, Layers, Trees,
+  ArrowRight, CheckCircle2, Clock, Shield, Star
 } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Our Services | Dogwood Landscaping & Gardening',
-  description: 'Explore our comprehensive landscaping services including design, installation, maintenance, and hardscaping.',
+  description: 'Explore our comprehensive landscaping services including design, installation, lawn care, pruning, trimming, and mulching.',
 }
 
 const services = [
@@ -18,37 +18,37 @@ const services = [
     icon: TreeDeciduous,
     title: 'Landscape Design',
     description: 'Custom landscape designs that reflect your style and complement your home.',
-    features: ['3D Design Renderings', 'Plant Selection Guide', 'Budget Planning', 'Phased Implementation Plans'],
+    features: ['Plant Selection Guide', 'Budget Planning', 'Phased Implementation Plans', 'On-site Consultation'],
   },
   {
     icon: Leaf,
     title: 'Garden Installation',
     description: 'Expert installation of flower beds, shrubs, trees, and ornamental plants.',
-    features: ['Soil Preparation', 'Native Plant Selection', 'Irrigation Setup', 'Mulching & Edging'],
-  },
-  {
-    icon: Shovel,
-    title: 'Hardscaping',
-    description: 'Beautiful patios, walkways, retaining walls, and outdoor living spaces.',
-    features: ['Natural Stone Work', 'Paver Installation', 'Retaining Walls', 'Outdoor Kitchens'],
+    features: ['Soil Preparation', 'Native Plant Selection', 'Mulching & Edging', 'Seasonal Planting'],
   },
   {
     icon: Sparkles,
     title: 'Lawn Care',
     description: 'Comprehensive lawn maintenance to keep your grass lush and healthy.',
-    features: ['Weekly Mowing', 'Fertilization', 'Aeration & Overseeding', 'Weed Control'],
+    features: ['Regular Mowing', 'Fertilization', 'Aeration & Overseeding', 'Weed Control'],
   },
   {
-    icon: Droplets,
-    title: 'Irrigation Systems',
-    description: 'Smart irrigation solutions for efficient watering and water conservation.',
-    features: ['System Design', 'Installation', 'Smart Controllers', 'Seasonal Adjustments'],
+    icon: Trees,
+    title: 'Tree & Shrub Care',
+    description: 'Professional care and health management for your trees and shrubs.',
+    features: ['Seasonal Care', 'Disease Treatment', 'Pest Management', 'Fertilization'],
   },
   {
     icon: Scissors,
-    title: 'Tree & Shrub Care',
-    description: 'Professional pruning, trimming, and health management for your plants.',
-    features: ['Seasonal Pruning', 'Disease Treatment', 'Pest Management', 'Fertilization'],
+    title: 'Pruning & Trimming',
+    description: 'Expert pruning, trimming, and shearing to keep your plants healthy, safe, and looking their best.',
+    features: ['Tree & Shrub Pruning', 'Hedge Trimming', 'Shearing & Shaping', 'Seasonal Cleanup'],
+  },
+  {
+    icon: Layers,
+    title: 'Mulching & Ground Cover',
+    description: 'Professional mulch bed installation and soil covering to protect your garden and retain moisture.',
+    features: ['Mulch Bed Installation', 'Soil Covering', 'Ground Cover Planting', 'Edging & Borders'],
   },
 ]
 
@@ -149,7 +149,7 @@ export default function ServicesPage() {
             {[
               { icon: Clock, title: 'Timely Service', description: 'We respect your time and complete projects on schedule.' },
               { icon: Shield, title: 'Fully Insured', description: 'Peace of mind with comprehensive liability coverage.' },
-              { icon: Award, title: 'Award Winning', description: 'Recognized excellence in landscape design and service.' },
+              { icon: Star, title: 'Attention to Details', description: 'Every element is carefully designed and executed to create a beautiful final result.' },
             ].map((item, index) => (
               <AnimatedSection key={item.title} animation="fade-up" delay={index * 100}>
                 <div className="text-center p-6">

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { AnimatedSection } from '@/components/animated-section'
-import { Leaf, TreeDeciduous, Shovel, Sparkles, ArrowRight, Star, CheckCircle2 } from 'lucide-react'
+import { Leaf, TreeDeciduous, Scissors, Sparkles, ArrowRight, Star, CheckCircle2, Layers } from 'lucide-react'
 
 const services = [
   {
@@ -17,14 +17,14 @@ const services = [
     description: 'Expert planting and garden bed creation for lasting beauty.',
   },
   {
-    icon: Shovel,
-    title: 'Hardscaping',
-    description: 'Patios, walkways, and retaining walls built to perfection.',
+    icon: Scissors,
+    title: 'Pruning & Trimming',
+    description: 'Professional pruning, trimming, and shearing to keep your plants healthy and beautiful.',
   },
   {
-    icon: Sparkles,
-    title: 'Maintenance',
-    description: 'Keep your landscape pristine with our care programs.',
+    icon: Layers,
+    title: 'Mulching & Ground Cover',
+    description: 'Mulch bed installation, soil covering, and mulching to protect and enrich your garden.',
   },
 ]
 
@@ -59,7 +59,7 @@ export default function HomePage() {
         
         <div className="relative z-10 container mx-auto px-4 text-center text-offwhite">
           <AnimatedSection animation="fade-down" delay={0}>
-            <div className="relative w-32 h-32 mx-auto mb-6">
+            <div className="relative w-56 h-56 mx-auto mb-6">
               <Image
                 src="/images/logo-light.png"
                 alt="Dogwood Landscaping"
@@ -78,8 +78,8 @@ export default function HomePage() {
           
           <AnimatedSection animation="fade-up" delay={400}>
             <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-cream/90 leading-relaxed">
-              Professional landscaping and gardening services that bring your vision to life. 
-              Creating beautiful, sustainable outdoor environments since 2026.
+              Professional landscaping and gardening services that bring your vision to life.
+              Creating beautiful, sustainable outdoor environments.
             </p>
           </AnimatedSection>
           
@@ -106,21 +106,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="bg-sage py-8">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <AnimatedSection key={stat.label} animation="fade-up" delay={index * 100}>
-                <div className="text-center text-offwhite">
-                  <div className="font-serif text-3xl md:text-4xl font-bold mb-1">{stat.value}</div>
-                  <div className="text-sm text-cream/80">{stat.label}</div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
+
+      {/* Divider */}
+      <div className="h-4 w-full" style={{ backgroundColor: '#585e47' }} />
 
       {/* Services Section */}
       <section className="py-20 bg-offwhite">
@@ -205,13 +193,6 @@ export default function HomePage() {
                     className="object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-sage text-offwhite p-6 rounded-xl shadow-lg">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Star className="w-5 h-5 fill-current" />
-                    <span className="font-bold text-lg">4.9</span>
-                  </div>
-                  <p className="text-sm text-cream">Average Rating</p>
-                </div>
               </div>
             </AnimatedSection>
           </div>
@@ -227,7 +208,7 @@ export default function HomePage() {
               Recent Projects
             </h2>
             <p className="text-olive max-w-2xl mx-auto">
-              Browse through our collection of completed projects and get inspired for your own outdoor transformation.
+              We create outdoor spaces with care, precision, and professionalism.
             </p>
           </AnimatedSection>
 
@@ -262,7 +243,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonial Preview */}
+      {/* TESTIMONIAL PREVIEW — HIDDEN (re-enable when ready)
       <section className="py-20 bg-olive">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" className="max-w-3xl mx-auto text-center">
@@ -272,7 +253,7 @@ export default function HomePage() {
               ))}
             </div>
             <blockquote className="font-serif text-2xl md:text-3xl text-offwhite mb-6 leading-relaxed">
-              &quot;Dogwood transformed our backyard into an absolute paradise. Their attention to 
+              &quot;Dogwood transformed our backyard into an absolute paradise. Their attention to
               detail and creative vision exceeded all our expectations.&quot;
             </blockquote>
             <cite className="text-cream not-italic">
@@ -282,6 +263,7 @@ export default function HomePage() {
           </AnimatedSection>
         </div>
       </section>
+      */}
 
       {/* CTA Section */}
       <section className="py-20 bg-sage">

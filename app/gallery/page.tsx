@@ -8,12 +8,12 @@ import { AnimatedSection } from '@/components/animated-section'
 import { ArrowRight, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const categories = ['All', 'Landscape Design', 'Hardscaping', 'Gardens', 'Maintenance']
+const categories = ['All', 'Landscape Design', 'Gardens', 'Maintenance']
 
 const projects = [
   { id: 1, src: '/images/gallery/project-1.jpg', title: 'Modern Backyard Retreat', category: 'Landscape Design', description: 'Complete backyard transformation with patio and garden beds.' },
   { id: 2, src: '/images/gallery/project-2.jpg', title: 'Welcoming Front Entrance', category: 'Gardens', description: 'Curved beds and stone walkway for stunning curb appeal.' },
-  { id: 3, src: '/images/gallery/project-3.jpg', title: 'Outdoor Living Space', category: 'Hardscaping', description: 'Natural stone walls and entertaining area.' },
+  { id: 3, src: '/images/gallery/project-3.jpg', title: 'Garden Transformation', category: 'Gardens', description: 'Lush garden beds with mixed plantings and natural stone accents.' },
   { id: 4, src: '/images/gallery/project-4.jpg', title: 'Zen Garden Corner', category: 'Gardens', description: 'Peaceful retreat with Japanese maple and river rocks.' },
   { id: 5, src: '/images/gallery/project-5.jpg', title: 'Kitchen Garden', category: 'Gardens', description: 'Raised beds for herbs and vegetables.' },
   { id: 6, src: '/images/gallery/project-6.jpg', title: 'Rose Arbor Entrance', category: 'Landscape Design', description: 'Romantic cottage-style garden entrance.' },
@@ -38,7 +38,7 @@ export default function GalleryPage() {
               Project Gallery
             </h1>
             <p className="text-olive text-lg leading-relaxed">
-              Explore our collection of completed landscaping projects and get inspired for your own outdoor transformation.
+              Explore our collection of landscaping projects and get inspired for your own outdoor transformation.
             </p>
           </AnimatedSection>
         </div>

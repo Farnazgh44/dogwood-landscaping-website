@@ -20,7 +20,6 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: 'Dogwood Landscaping & Gardening | Professional Landscape Services',
   description: 'Transform your outdoor space with Dogwood Landscaping & Gardening. We offer professional landscaping, garden design, lawn care, and maintenance services.',
-  generator: 'v0.app',
   keywords: ['landscaping', 'gardening', 'lawn care', 'garden design', 'outdoor living', 'landscape maintenance'],
   icons: {
     icon: [
@@ -33,8 +32,8 @@ export const metadata: Metadata = {
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/icon.png',
+        type: 'image/png',
       },
     ],
     apple: '/apple-icon.png',

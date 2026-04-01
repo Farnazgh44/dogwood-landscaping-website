@@ -10,7 +10,8 @@ import { cn } from '@/lib/utils'
 const navLinks = [
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
-  { href: '/testimonials', label: 'Testimonials' },
+  // TESTIMONIALS HIDDEN — uncomment to restore:
+  // { href: '/testimonials', label: 'Testimonials' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/contact', label: 'Contact' },
   { href: '/schedule', label: 'Book Now' },
@@ -20,6 +21,12 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
+
+  // On the home page, navbar starts transparent (dark hero image underneath).
+  // On all other pages, navbar is always in the "scrolled" (light) style
+  // because those pages have light-colored hero sections.
+  const isHomePage = pathname === '/'
+  const useDarkStyle = !isHomePage || isScrolled
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +44,7 @@ export function Navigation() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
+        useDarkStyle
           ? "bg-offwhite/95 backdrop-blur-md shadow-md py-2"
           : "bg-transparent py-4"
       )}
@@ -46,7 +53,7 @@ export function Navigation() {
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-14 h-14 transition-transform duration-300 group-hover:scale-105">
             <Image
-              src={isScrolled ? "/images/logo.png" : "/images/logo-light.png"}
+              src={useDarkStyle ? "/images/logo.png" : "/images/logo-light.png"}
               alt="Dogwood Landscaping & Gardening"
               fill
               className="object-contain"
@@ -55,7 +62,7 @@ export function Navigation() {
           </div>
           <span className={cn(
             "hidden sm:block font-serif text-lg font-bold transition-colors duration-300",
-            isScrolled ? "text-dark" : "text-offwhite"
+            useDarkStyle ? "text-[#111111]" : "text-offwhite"
           )}>
             Dogwood
           </span>
@@ -72,8 +79,8 @@ export function Navigation() {
                 link.label === "Book Now"
                   ? "bg-sage text-offwhite px-4 py-2 rounded-full hover:bg-olive hover:text-offwhite"
                   : cn(
-                      isScrolled
-                        ? pathname === link.href ? "text-sage" : "text-dark hover:text-sage"
+                      useDarkStyle
+                        ? pathname === link.href ? "text-sage" : "text-[#111111] hover:text-sage"
                         : pathname === link.href ? "text-pink" : "text-offwhite hover:text-pink"
                     )
               )}
@@ -82,7 +89,7 @@ export function Navigation() {
               {pathname === link.href && link.label !== "Book Now" && (
                 <span className={cn(
                   "absolute -bottom-1 left-0 w-full h-0.5 rounded-full",
-                  isScrolled ? "bg-sage" : "bg-pink"
+                  useDarkStyle ? "bg-sage" : "bg-pink"
                 )} />
               )}
             </Link>
@@ -94,7 +101,7 @@ export function Navigation() {
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
             "lg:hidden p-2 transition-colors",
-            isScrolled ? "text-dark hover:text-sage" : "text-offwhite hover:text-pink"
+            useDarkStyle ? "text-[#111111] hover:text-sage" : "text-offwhite hover:text-pink"
           )}
           aria-label="Toggle menu"
         >
@@ -120,7 +127,7 @@ export function Navigation() {
                   ? "bg-sage text-offwhite px-4 py-3 rounded-full text-center hover:bg-olive"
                   : pathname === link.href
                     ? "text-sage"
-                    : "text-dark hover:text-sage"
+                    : "text-[#111111] hover:text-sage"
               )}
             >
               {link.label}

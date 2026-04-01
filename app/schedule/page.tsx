@@ -10,15 +10,15 @@ import { Calendar, Clock, CheckCircle2, ArrowRight, ArrowLeft } from 'lucide-rea
 import { cn } from '@/lib/utils'
 
 const timeSlots = [
-  '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'
+  '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'
 ]
 
 const serviceTypes = [
   'Landscape Design',
   'Garden Installation',
-  'Hardscaping',
   'Lawn Maintenance',
-  'Irrigation Systems',
+  'Pruning & Trimming',
+  'Mulching & Ground Cover',
   'Other'
 ]
 
@@ -29,17 +29,26 @@ export default function SchedulePage() {
   const [selectedService, setSelectedService] = useState<string>('')
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  // Generate next 14 days for date selection
-  const dates = Array.from({ length: 14 }, (_, i) => {
-    const date = new Date()
-    date.setDate(date.getDate() + i + 1)
-    return {
-      full: date.toISOString().split('T')[0],
-      day: date.toLocaleDateString('en-US', { weekday: 'short' }),
-      date: date.getDate(),
-      month: date.toLocaleDateString('en-US', { month: 'short' }),
+  // Generate next 14 weekdays (Mon–Fri) for date selection
+  const dates = (() => {
+    const result = []
+    let i = 1
+    while (result.length < 14) {
+      const date = new Date()
+      date.setDate(date.getDate() + i)
+      const dayOfWeek = date.getDay()
+      if (dayOfWeek !== 0 && dayOfWeek !== 6) { // skip Saturday (6) and Sunday (0)
+        result.push({
+          full: date.toISOString().split('T')[0],
+          day: date.toLocaleDateString('en-US', { weekday: 'short' }),
+          date: date.getDate(),
+          month: date.toLocaleDateString('en-US', { month: 'short' }),
+        })
+      }
+      i++
     }
-  })
+    return result
+  })()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

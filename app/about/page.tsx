@@ -91,19 +91,20 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-olive leading-relaxed">
                 <p>
-                  Dogwood Landscaping & Gardening was born from a simple belief: that everyone deserves 
-                  a beautiful outdoor space to call their own. Founded in 2026, we started with a small 
-                  team and big dreams.
+                  At Dogwood Landscaping &amp; Gardening, landscaping is more than a service—it&apos;s a genuine
+                  passion for creating and working within outdoor spaces. Every project is approached with
+                  care, creativity, and attention to detail, combining hands-on craftsmanship with
+                  thoughtful design.
                 </p>
                 <p>
-                  Today, we&apos;ve grown into a full-service landscaping company, but our core values remain 
-                  unchanged. We approach every project with the same enthusiasm and attention to detail 
-                  that marked our very first garden.
+                  The goal isn&apos;t just to complete a project, but to create something lasting—spaces that
+                  feel natural, refined, and meaningful. Each garden and landscape is designed to reflect
+                  the client&apos;s vision while enhancing the beauty of their home.
                 </p>
                 <p>
-                  Our name comes from the beloved Dogwood tree - a symbol of rebirth and new beginnings. 
-                  Just like this resilient tree, we help transform outdoor spaces into vibrant, thriving 
-                  environments that bring joy year after year.
+                  With a strong focus on quality and pride in every detail, Dogwood is committed to
+                  transforming outdoor spaces into places you&apos;ll truly enjoy and feel proud of for
+                  years to come.
                 </p>
               </div>
             </AnimatedSection>
@@ -137,29 +138,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-16 bg-sage">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <AnimatedSection key={stat.label} animation="fade-up" delay={index * 100}>
-                <div className="text-center text-offwhite">
-                  <div className="font-serif text-4xl md:text-5xl font-bold mb-2">{stat.value}</div>
-                  <div className="text-cream/80 text-sm">{stat.label}</div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Divider */}
+      <div className="h-4 w-full bg-sage" />
 
-      {/* Team */}
+      {/* MEET THE PARTNERS — HIDDEN, uncomment when partners are ready
       <section className="py-20 bg-offwhite">
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" className="text-center mb-16">
             <span className="text-sage font-medium text-sm tracking-wider uppercase">Our People</span>
             <h2 className="font-serif text-3xl md:text-5xl font-bold text-dark mt-2 mb-4">
-              Meet the Team
+              Meet the Partners
             </h2>
             <p className="text-olive max-w-2xl mx-auto">
               A dedicated group of professionals passionate about creating beautiful outdoor spaces.
@@ -186,6 +174,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* CTA */}
       <section className="py-20 bg-olive">
