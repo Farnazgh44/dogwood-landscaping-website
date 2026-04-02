@@ -1,5 +1,6 @@
 "use client"
 
+// SEO metadata is handled in layout.tsx for client components
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'

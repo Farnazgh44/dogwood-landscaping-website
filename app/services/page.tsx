@@ -9,8 +9,8 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Our Services | Dogwood Landscaping & Gardening',
-  description: 'Explore our comprehensive landscaping services including design, installation, lawn care, pruning, trimming, and mulching.',
+  title: 'Landscaping Services Vancouver BC | Dogwood Landscaping & Gardening',
+  description: 'Professional landscaping services in Vancouver BC — landscape design, garden installation, lawn care, pruning, trimming, and mulching. Serving Greater Vancouver.',
 }
 
 const services = [

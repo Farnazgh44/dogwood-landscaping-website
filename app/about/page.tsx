@@ -6,8 +6,8 @@ import { AnimatedSection } from '@/components/animated-section'
 import { Heart, Leaf, Users, Award, ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'About Us | Dogwood Landscaping & Gardening',
-  description: 'Learn about Dogwood Landscaping & Gardening - our story, values, and commitment to creating beautiful outdoor spaces.',
+  title: 'About Us | Dogwood Landscaping & Gardening Vancouver BC',
+  description: 'Learn about Dogwood Landscaping & Gardening — a passionate landscaping company serving Vancouver and the Greater Vancouver Area with care, creativity, and attention to detail.',
 }
 
 const values = [
