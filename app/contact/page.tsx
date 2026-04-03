@@ -58,11 +58,10 @@ export default function ContactPage() {
         subject_line: (form.querySelector('[name="subject_line"]') as HTMLInputElement)?.value,
         message: (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value,
       }
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
         },
         body: JSON.stringify(payload),
       })
