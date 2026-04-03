@@ -24,8 +24,7 @@ export const metadata: Metadata = {
     'landscaping Vancouver', 'landscaping Vancouver BC', 'gardening Vancouver',
     'landscape design Vancouver', 'lawn care Vancouver', 'garden installation Vancouver',
     'pruning trimming Vancouver', 'mulching Vancouver', 'landscaping Greater Vancouver',
-    'landscaping Burnaby', 'landscaping North Vancouver', 'landscaping Coquitlam',
-    'landscaping Richmond', 'landscaping Surrey', 'outdoor spaces Vancouver',
+    'landscaping North Vancouver', 'landscaping Richmond', 'outdoor spaces Vancouver',
     'landscaping company Vancouver BC', 'professional landscaping BC',
     'Dogwood Landscaping', 'dogwoodlandgardening',
   ],
@@ -77,9 +76,7 @@ export default function RootLayout({
       "addressCountry": "CA"
     },
     "areaServed": [
-      "Vancouver", "Burnaby", "North Vancouver", "West Vancouver",
-      "Coquitlam", "Port Coquitlam", "Surrey", "Richmond", "Delta",
-      "New Westminster", "Langley", "Maple Ridge"
+      "Vancouver", "North Vancouver", "Richmond"
     ],
     "openingHours": "Mo-Fr 08:00-16:00",
     "sameAs": [

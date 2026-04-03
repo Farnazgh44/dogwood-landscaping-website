@@ -107,7 +107,7 @@ export function Footer() {
               </li>
               <li className="text-sm text-cream/80 mt-4">
                 <p className="font-medium text-offwhite mb-1">Serving Greater Vancouver</p>
-                <p>Vancouver · Burnaby · North Vancouver · West Vancouver · Coquitlam · Richmond · Surrey & surrounding areas</p>
+                <p>Vancouver · North Vancouver · Richmond</p>
               </li>
             </ul>
           </div>
