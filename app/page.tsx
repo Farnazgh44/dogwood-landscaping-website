@@ -71,8 +71,8 @@ export default function HomePage() {
           
           <AnimatedSection animation="fade-up" delay={200}>
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance">
-              Transform Your
-              <span className="block text-pink">Outdoor Space</span>
+              <span style={{ color: '#fffbf8' }}>Precision in the mud,</span>
+              <span className="block" style={{ color: '#e4aeb5' }}>Perfection in the Yard</span>
             </h1>
           </AnimatedSection>
           
