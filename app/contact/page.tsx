@@ -47,12 +47,24 @@ export default function ContactPage() {
     setIsLoading(true)
     setErrorMessage('')
     try {
-      const formData = new FormData(e.currentTarget)
-      formData.append('access_key', '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7')
-      formData.append('subject', 'New Contact Message - Dogwood Landscaping & Gardening')
+      const form = e.currentTarget
+      const payload = {
+        access_key: '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7',
+        subject: 'New Contact Message - Dogwood Landscaping & Gardening',
+        first_name: (form.querySelector('[name="first_name"]') as HTMLInputElement)?.value,
+        last_name: (form.querySelector('[name="last_name"]') as HTMLInputElement)?.value,
+        email: (form.querySelector('[name="email"]') as HTMLInputElement)?.value,
+        phone: (form.querySelector('[name="phone"]') as HTMLInputElement)?.value,
+        subject_line: (form.querySelector('[name="subject_line"]') as HTMLInputElement)?.value,
+        message: (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value,
+      }
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(payload),
       })
       const data = await response.json()
       if (data.success) {
@@ -61,7 +73,7 @@ export default function ContactPage() {
         setErrorMessage(data.message || 'Something went wrong. Please try again.')
       }
     } catch (err) {
-      setErrorMessage('Network error. Please check your connection and try again.')
+      setErrorMessage('Error: ' + String(err))
     } finally {
       setIsLoading(false)
     }

@@ -57,17 +57,30 @@ export default function SchedulePage() {
     setIsLoading(true)
     setIsError(false)
     try {
-      const formData = new FormData(e.currentTarget)
-      formData.append('access_key', '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7')
-      formData.append('subject', 'New Booking Request - Dogwood Landscaping & Gardening')
-      formData.append('appointment_date', selectedDate)
-      formData.append('appointment_time', selectedTime)
-      formData.append('service', selectedService)
+      const form = e.currentTarget
+      const payload = {
+        access_key: '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7',
+        subject: 'New Booking Request - Dogwood Landscaping & Gardening',
+        first_name: (form.querySelector('[name="first_name"]') as HTMLInputElement)?.value,
+        last_name: (form.querySelector('[name="last_name"]') as HTMLInputElement)?.value,
+        email: (form.querySelector('[name="email"]') as HTMLInputElement)?.value,
+        phone: (form.querySelector('[name="phone"]') as HTMLInputElement)?.value,
+        property_address: (form.querySelector('[name="property_address"]') as HTMLInputElement)?.value,
+        notes: (form.querySelector('[name="notes"]') as HTMLTextAreaElement)?.value,
+        appointment_date: selectedDate,
+        appointment_time: selectedTime,
+        service: selectedService,
+      }
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(payload),
       })
-      if (response.ok) {
+      const data = await response.json()
+      if (data.success) {
         setIsSubmitted(true)
       } else {
         setIsError(true)
