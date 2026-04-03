@@ -295,29 +295,30 @@ export default function SchedulePage() {
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="firstName" className="block text-sm font-medium text-dark mb-2">First Name *</label>
-                          <Input id="firstName" required className="bg-cream/20 border-cream" />
+                          <Input id="firstName" name="first_name" required className="bg-cream/20 border-cream" />
                         </div>
                         <div>
                           <label htmlFor="lastName" className="block text-sm font-medium text-dark mb-2">Last Name *</label>
-                          <Input id="lastName" required className="bg-cream/20 border-cream" />
+                          <Input id="lastName" name="last_name" required className="bg-cream/20 border-cream" />
                         </div>
                       </div>
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium text-dark mb-2">Email *</label>
-                        <Input id="email" type="email" required className="bg-cream/20 border-cream" />
+                        <Input id="email" name="email" type="email" required className="bg-cream/20 border-cream" />
                       </div>
                       <div>
                         <label htmlFor="phone" className="block text-sm font-medium text-dark mb-2">Phone *</label>
-                        <Input id="phone" type="tel" required className="bg-cream/20 border-cream" />
+                        <Input id="phone" name="phone" type="tel" required className="bg-cream/20 border-cream" />
                       </div>
                       <div>
                         <label htmlFor="address" className="block text-sm font-medium text-dark mb-2">Property Address *</label>
-                        <Input id="address" required className="bg-cream/20 border-cream" />
+                        <Input id="address" name="property_address" required className="bg-cream/20 border-cream" />
                       </div>
                       <div>
                         <label htmlFor="notes" className="block text-sm font-medium text-dark mb-2">Additional Notes</label>
-                        <Textarea 
-                          id="notes" 
+                        <Textarea
+                          id="notes"
+                          name="notes"
                           rows={3}
                           className="bg-cream/20 border-cream resize-none"
                           placeholder="Tell us more about your project..."

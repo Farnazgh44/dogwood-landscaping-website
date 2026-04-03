@@ -113,31 +113,32 @@ export default function ContactPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label htmlFor="firstName" className="block text-sm font-medium text-dark mb-2">First Name</label>
-                            <Input id="firstName" required className="bg-cream/20 border-cream focus:border-sage" />
+                            <Input id="firstName" name="first_name" required className="bg-cream/20 border-cream focus:border-sage" />
                           </div>
                           <div>
                             <label htmlFor="lastName" className="block text-sm font-medium text-dark mb-2">Last Name</label>
-                            <Input id="lastName" required className="bg-cream/20 border-cream focus:border-sage" />
+                            <Input id="lastName" name="last_name" required className="bg-cream/20 border-cream focus:border-sage" />
                           </div>
                         </div>
                         <div>
                           <label htmlFor="email" className="block text-sm font-medium text-dark mb-2">Email</label>
-                          <Input id="email" type="email" required className="bg-cream/20 border-cream focus:border-sage" />
+                          <Input id="email" name="email" type="email" required className="bg-cream/20 border-cream focus:border-sage" />
                         </div>
                         <div>
                           <label htmlFor="phone" className="block text-sm font-medium text-dark mb-2">Phone (Optional)</label>
-                          <Input id="phone" type="tel" className="bg-cream/20 border-cream focus:border-sage" />
+                          <Input id="phone" name="phone" type="tel" className="bg-cream/20 border-cream focus:border-sage" />
                         </div>
                         <div>
                           <label htmlFor="subject" className="block text-sm font-medium text-dark mb-2">Subject</label>
-                          <Input id="subject" required className="bg-cream/20 border-cream focus:border-sage" />
+                          <Input id="subject" name="subject_line" required className="bg-cream/20 border-cream focus:border-sage" />
                         </div>
                         <div>
                           <label htmlFor="message" className="block text-sm font-medium text-dark mb-2">Message</label>
-                          <Textarea 
-                            id="message" 
-                            rows={5} 
-                            required 
+                          <Textarea
+                            id="message"
+                            name="message"
+                            rows={5}
+                            required
                             className="bg-cream/20 border-cream focus:border-sage resize-none"
                             placeholder="Tell us about your project..."
                           />
