@@ -52,6 +52,16 @@ export default function SchedulePage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    formData.append('access_key', '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7')
+    formData.append('subject', 'New Booking Request - Dogwood Landscaping & Gardening')
+    formData.append('appointment_date', selectedDate)
+    formData.append('appointment_time', selectedTime)
+    formData.append('service', selectedService)
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData,
+    })
     setIsSubmitted(true)
   }
 

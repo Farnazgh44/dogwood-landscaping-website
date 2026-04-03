@@ -44,10 +44,17 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    const formData = new FormData(e.currentTarget)
+    formData.append('access_key', '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7')
+    formData.append('subject', 'New Contact Message - Dogwood Landscaping & Gardening')
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData,
+    })
     setIsLoading(false)
-    setIsSubmitted(true)
+    if (response.ok) {
+      setIsSubmitted(true)
+    }
   }
 
   return (
