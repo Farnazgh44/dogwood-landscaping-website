@@ -17,8 +17,13 @@ export async function POST(request: NextRequest) {
       }),
     })
 
-    const data = await response.json()
-    return NextResponse.json(data)
+    const text = await response.text()
+    try {
+      const data = JSON.parse(text)
+      return NextResponse.json(data)
+    } catch {
+      return NextResponse.json({ success: false, message: 'Web3Forms returned: ' + text.slice(0, 300) }, { status: 500 })
+    }
   } catch (error) {
     return NextResponse.json({ success: false, message: 'Server error: ' + String(error) }, { status: 500 })
   }
