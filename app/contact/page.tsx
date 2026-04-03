@@ -40,12 +40,12 @@ const socialLinks = [
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
-    setIsError(false)
+    setErrorMessage('')
     try {
       const formData = new FormData(e.currentTarget)
       formData.append('access_key', '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7')
@@ -54,13 +54,14 @@ export default function ContactPage() {
         method: 'POST',
         body: formData,
       })
-      if (response.ok) {
+      const data = await response.json()
+      if (data.success) {
         setIsSubmitted(true)
       } else {
-        setIsError(true)
+        setErrorMessage(data.message || 'Something went wrong. Please try again.')
       }
-    } catch {
-      setIsError(true)
+    } catch (err) {
+      setErrorMessage('Network error. Please check your connection and try again.')
     } finally {
       setIsLoading(false)
     }
@@ -143,9 +144,9 @@ export default function ContactPage() {
                             placeholder="Tell us about your project..."
                           />
                         </div>
-                        {isError && (
+                        {errorMessage && (
                           <p className="text-red-500 text-sm text-center">
-                            Something went wrong. Please try again or email us directly.
+                            {errorMessage}
                           </p>
                         )}
                         <Button
