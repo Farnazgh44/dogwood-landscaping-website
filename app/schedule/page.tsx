@@ -28,6 +28,8 @@ export default function SchedulePage() {
   const [selectedTime, setSelectedTime] = useState<string>('')
   const [selectedService, setSelectedService] = useState<string>('')
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   // Generate next 14 weekdays (Mon–Fri) for date selection
   const dates = (() => {
@@ -52,17 +54,29 @@ export default function SchedulePage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    formData.append('access_key', '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7')
-    formData.append('subject', 'New Booking Request - Dogwood Landscaping & Gardening')
-    formData.append('appointment_date', selectedDate)
-    formData.append('appointment_time', selectedTime)
-    formData.append('service', selectedService)
-    await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData,
-    })
-    setIsSubmitted(true)
+    setIsLoading(true)
+    setIsError(false)
+    try {
+      const formData = new FormData(e.currentTarget)
+      formData.append('access_key', '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7')
+      formData.append('subject', 'New Booking Request - Dogwood Landscaping & Gardening')
+      formData.append('appointment_date', selectedDate)
+      formData.append('appointment_time', selectedTime)
+      formData.append('service', selectedService)
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      })
+      if (response.ok) {
+        setIsSubmitted(true)
+      } else {
+        setIsError(true)
+      }
+    } catch {
+      setIsError(true)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   if (isSubmitted) {
@@ -319,6 +333,11 @@ export default function SchedulePage() {
                         <p className="text-sm text-olive">Service: {selectedService}</p>
                       </div>
 
+                      {isError && (
+                        <p className="text-red-500 text-sm text-center">
+                          Something went wrong. Please try again or call us directly.
+                        </p>
+                      )}
                       <div className="flex gap-4">
                         <Button
                           type="button"
@@ -331,9 +350,10 @@ export default function SchedulePage() {
                         </Button>
                         <Button
                           type="submit"
+                          disabled={isLoading}
                           className="flex-1 bg-sage text-offwhite hover:bg-olive"
                         >
-                          Confirm Booking
+                          {isLoading ? 'Sending...' : 'Confirm Booking'}
                           <CheckCircle2 className="ml-2 h-4 w-4" />
                         </Button>
                       </div>

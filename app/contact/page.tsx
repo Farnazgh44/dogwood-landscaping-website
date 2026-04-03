@@ -40,20 +40,29 @@ const socialLinks = [
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
-    const formData = new FormData(e.currentTarget)
-    formData.append('access_key', '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7')
-    formData.append('subject', 'New Contact Message - Dogwood Landscaping & Gardening')
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData,
-    })
-    setIsLoading(false)
-    if (response.ok) {
-      setIsSubmitted(true)
+    setIsError(false)
+    try {
+      const formData = new FormData(e.currentTarget)
+      formData.append('access_key', '7a4e2835-9a4e-4e01-8bac-1738ed4cc9f7')
+      formData.append('subject', 'New Contact Message - Dogwood Landscaping & Gardening')
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      })
+      if (response.ok) {
+        setIsSubmitted(true)
+      } else {
+        setIsError(true)
+      }
+    } catch {
+      setIsError(true)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -133,8 +142,13 @@ export default function ContactPage() {
                             placeholder="Tell us about your project..."
                           />
                         </div>
-                        <Button 
-                          type="submit" 
+                        {isError && (
+                          <p className="text-red-500 text-sm text-center">
+                            Something went wrong. Please try again or email us directly.
+                          </p>
+                        )}
+                        <Button
+                          type="submit"
                           disabled={isLoading}
                           className="w-full bg-sage text-offwhite hover:bg-olive"
                         >
