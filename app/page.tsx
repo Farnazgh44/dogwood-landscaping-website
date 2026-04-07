@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { AnimatedSection } from '@/components/animated-section'
 import { Leaf, TreeDeciduous, Scissors, Sparkles, ArrowRight, Star, CheckCircle2, Layers } from 'lucide-react'
+import { PromoBanner } from '@/components/promo-banner'
 
 const services = [
   {
@@ -69,6 +70,12 @@ export default function HomePage() {
             </div>
           </AnimatedSection>
           
+          <AnimatedSection animation="fade-up" delay={150}>
+            <div className="mb-8">
+              <PromoBanner />
+            </div>
+          </AnimatedSection>
+
           <AnimatedSection animation="fade-up" delay={200}>
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance">
               <span style={{ color: '#fffbf8' }}>Precision in the Mud,</span>
