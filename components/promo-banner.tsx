@@ -47,7 +47,7 @@ export function PromoBanner() {
               15% Off All Services
             </p>
             <p className="text-cream/80 text-xs mt-0.5">
-              Book by May 15 to enjoy our seasonal savings.
+              Book by May 15 to enjoy our first year promotion.
             </p>
           </div>
 
