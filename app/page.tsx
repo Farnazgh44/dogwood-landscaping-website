@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { AnimatedSection } from '@/components/animated-section'
 import { Leaf, TreeDeciduous, Scissors, Sparkles, ArrowRight, Star, CheckCircle2, Layers } from 'lucide-react'
 import { PromoBanner } from '@/components/promo-banner'
+import { RecentProjects } from '@/components/recent-projects'
 
 const services = [
   {
@@ -85,8 +86,8 @@ export default function HomePage() {
           
           <AnimatedSection animation="fade-up" delay={400}>
             <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-cream/90 leading-relaxed">
-              Professional landscaping and gardening services that bring your vision to life.
-              Creating beautiful, sustainable outdoor environments.
+              Professional WorkSafeBC-registered landscaping and gardening services that bring your vision to life,
+              creating beautiful, sustainable outdoor environments.
             </p>
           </AnimatedSection>
           
@@ -174,6 +175,7 @@ export default function HomePage() {
               </p>
               <ul className="space-y-4">
                 {[
+                  'WorkSafeBC-registered landscaping and gardening services',
                   'Licensed and insured professionals',
                   'Sustainable and eco-friendly practices',
                   'Custom designs for every budget',
@@ -219,25 +221,7 @@ export default function HomePage() {
             </p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {galleryImages.map((image, index) => (
-              <AnimatedSection key={image.src} animation="scale" delay={index * 100}>
-                <div className="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-md">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/40 transition-colors duration-300 flex items-center justify-center">
-                    <span className="text-offwhite font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      View Project
-                    </span>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <RecentProjects />
 
           <AnimatedSection animation="fade-up" delay={300} className="text-center mt-12">
             <Button asChild className="bg-sage text-offwhite hover:bg-olive">
