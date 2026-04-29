@@ -24,12 +24,6 @@ const projects: Project[] = [
   { id: 7, src: '/images/gallery/After1.jpg', before: '/images/gallery/Before1.jpeg', final: '/images/gallery/Final1.jpg', title: 'Garden Refresh & Cleanup', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
   { id: 8, src: '/images/gallery/After2.jpg', before: '/images/gallery/Before2.jpeg', final: '/images/gallery/Final2.jpg', title: 'Lawn & Bed Restoration', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
   { id: 9, src: '/images/gallery/After3.jpg', before: '/images/gallery/Before3.jpeg', final: '/images/gallery/final3.jpg', title: 'Yard Tidy-up & Pruning', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
-  { id: 1, src: '/images/gallery/project-1.jpg', title: 'Modern Backyard Retreat', category: 'Landscape Design', description: 'Complete backyard transformation with patio and garden beds.' },
-  { id: 2, src: '/images/gallery/project-2.jpg', title: 'Welcoming Front Entrance', category: 'Gardens', description: 'Curved beds and stone walkway for stunning curb appeal.' },
-  { id: 3, src: '/images/gallery/project-3.jpg', title: 'Garden Transformation', category: 'Gardens', description: 'Lush garden beds with mixed plantings and natural stone accents.' },
-  { id: 4, src: '/images/gallery/project-4.jpg', title: 'Zen Garden Corner', category: 'Gardens', description: 'Peaceful retreat with Japanese maple and river rocks.' },
-  { id: 5, src: '/images/gallery/project-5.jpg', title: 'Kitchen Garden', category: 'Gardens', description: 'Raised beds for herbs and vegetables.' },
-  { id: 6, src: '/images/gallery/project-6.jpg', title: 'Rose Arbor Entrance', category: 'Landscape Design', description: 'Romantic cottage-style garden entrance.' },
 ]
 
 export default function GalleryPage() {
