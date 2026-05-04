@@ -47,7 +47,7 @@ export function PromoBanner() {
               15% Off All Services
             </p>
             <p className="text-cream/80 text-xs mt-0.5">
-              Book by May 15 to enjoy our first year promotion.
+              Extended due to high demand, Book by May 30 to enjoy our first-year promotion.
             </p>
           </div>
 
@@ -66,10 +66,37 @@ export function PromoBanner() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-cream/10 py-1.5 px-5 flex items-center justify-center gap-3">
+        <div className="border-t border-cream/10 pt-2 pb-3 px-5 flex items-center justify-center gap-3">
           <span className="text-cream/50 text-xs">✦</span>
-          <p className="text-cream/60 text-xs tracking-[0.15em] uppercase">
-            Offer Ends May 15
+          <p className="text-cream/60 text-xs tracking-[0.15em] uppercase flex items-center gap-1">
+            <span>Offer Ends May</span>
+            <span className="relative inline-flex items-center">
+              <span className="relative inline-block text-cream/60">
+                15
+                <svg
+                  aria-hidden="true"
+                  className="absolute -inset-x-1 inset-y-0 w-[calc(100%+0.5rem)] h-full overflow-visible pointer-events-none"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                >
+                  <line
+                    x1="2"
+                    y1="78"
+                    x2="98"
+                    y2="22"
+                    stroke="#ef4444"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+              <span
+                className="ml-1.5 text-red-400 text-xl leading-none -rotate-6 inline-block translate-y-[-2px] normal-case tracking-normal font-bold"
+                style={{ fontFamily: 'var(--font-handwritten)' }}
+              >
+                30
+              </span>
+            </span>
           </p>
           <span className="text-cream/50 text-xs">•</span>
           <p className="text-cream/60 text-xs tracking-[0.15em] uppercase">

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Libre_Baskerville, Roboto } from 'next/font/google'
+import { Libre_Baskerville, Roboto, Caveat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
@@ -11,10 +11,16 @@ const libreBaskerville = Libre_Baskerville({
   variable: '--font-serif'
 })
 
-const roboto = Roboto({ 
+const roboto = Roboto({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
   variable: '--font-sans'
+})
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  variable: '--font-handwritten'
 })
 
 export const metadata: Metadata = {
@@ -90,7 +96,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`${libreBaskerville.variable} ${roboto.variable}`}>
+    <html lang="en" className={`${libreBaskerville.variable} ${roboto.variable} ${caveat.variable}`}>
       <head>
         <script
           type="application/ld+json"

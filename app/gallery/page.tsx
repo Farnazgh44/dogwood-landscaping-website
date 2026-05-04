@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { AnimatedSection } from '@/components/animated-section'
-import { ArrowRight, X } from 'lucide-react'
+import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const categories = ['All', 'Landscape Design', 'Gardens', 'Maintenance']
@@ -18,26 +18,189 @@ type Project = {
   description: string
   before?: string
   final?: string
+  images?: string[]
 }
 
 const projects: Project[] = [
   { id: 7, src: '/images/gallery/After1.jpg', before: '/images/gallery/Before1.jpeg', final: '/images/gallery/Final1.jpg', title: 'Garden Refresh & Cleanup', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
   { id: 8, src: '/images/gallery/After2.jpg', before: '/images/gallery/Before2.jpeg', final: '/images/gallery/Final2.jpg', title: 'Lawn & Bed Restoration', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
   { id: 9, src: '/images/gallery/After3.jpg', before: '/images/gallery/Before3.jpeg', final: '/images/gallery/final3.jpg', title: 'Yard Tidy-up & Pruning', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
+  { id: 10, src: '/images/gallery/After4.jpg', before: '/images/gallery/Before4.jpg', final: '/images/gallery/Final4.jpg', title: 'Garden Revival', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
+  { id: 11, src: '/images/gallery/After5.jpg', images: ['/images/gallery/After5.jpg', '/images/gallery/After6.jpg', '/images/gallery/After7.jpg'], title: 'Lawn Aeration, Overseeding & Fertilization', category: 'Maintenance', description: 'Reviving tired lawns with professional aeration, overseeding, and fertilization — for thicker, greener, healthier grass that lasts all season.' },
 ]
+
+const CARD_SIZES = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+
+function GalleryCard({ project, onOpen, eager }: { project: Project; onOpen: () => void; eager?: boolean }) {
+  const [imgIndex, setImgIndex] = useState(0)
+  const [showingBefore, setShowingBefore] = useState(false)
+
+  useEffect(() => {
+    if (!project.images || project.images.length < 2) return
+    const interval = setInterval(() => {
+      setImgIndex((i) => (i + 1) % project.images!.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [project.images])
+
+  useEffect(() => {
+    if (!project.before) return
+    const interval = setInterval(() => {
+      setShowingBefore((s) => !s)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [project.before])
+
+  return (
+    <button
+      onClick={onOpen}
+      className="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-md w-full text-left bg-cream/30"
+    >
+      {project.images ? (
+        <>
+          {project.images.map((img, i) => (
+            <Image
+              key={img}
+              src={img}
+              alt={`${project.title} — ${i + 1}`}
+              fill
+              sizes={CARD_SIZES}
+              priority={eager && i === 0}
+              loading={eager && i === 0 ? undefined : 'lazy'}
+              className={cn(
+                "object-cover transition-opacity duration-1000 ease-in-out",
+                i === imgIndex ? "opacity-100" : "opacity-0"
+              )}
+            />
+          ))}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+            {project.images.map((_, i) => (
+              <span
+                key={i}
+                className={cn(
+                  "h-1.5 rounded-full bg-offwhite transition-all duration-500",
+                  i === imgIndex ? "w-5 opacity-100" : "w-1.5 opacity-60"
+                )}
+              />
+            ))}
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute bottom-0 left-0 right-0 p-6 pb-10">
+              <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.category}</span>
+              <h3 className="text-offwhite font-serif text-xl font-bold mt-1">{project.title}</h3>
+            </div>
+          </div>
+        </>
+      ) : project.before ? (
+        <>
+          {/* After */}
+          <Image
+            src={project.src}
+            alt={`${project.title} — after`}
+            fill
+            sizes={CARD_SIZES}
+            priority={eager}
+            loading={eager ? undefined : 'lazy'}
+            className={cn(
+              "object-cover transition-opacity duration-1000 ease-in-out",
+              showingBefore ? "opacity-0" : "opacity-100"
+            )}
+          />
+          {/* Before */}
+          <Image
+            src={project.before}
+            alt={`${project.title} — before`}
+            fill
+            sizes={CARD_SIZES}
+            priority={eager}
+            loading={eager ? undefined : 'lazy'}
+            className={cn(
+              "object-cover transition-opacity duration-1000 ease-in-out",
+              showingBefore ? "opacity-100" : "opacity-0"
+            )}
+          />
+          {/* After / Before badge */}
+          <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-offwhite/90 text-dark text-xs font-medium tracking-wider uppercase shadow-sm z-10 min-w-[64px] text-center">
+            <span
+              className={cn(
+                "inline-block transition-opacity duration-700",
+                showingBefore ? "opacity-0" : "opacity-100"
+              )}
+            >
+              After
+            </span>
+            <span
+              className={cn(
+                "absolute inset-0 flex items-center justify-center transition-opacity duration-700",
+                showingBefore ? "opacity-100" : "opacity-0"
+              )}
+            >
+              Before
+            </span>
+          </span>
+          <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.category}</span>
+              <h3 className="text-offwhite font-serif text-xl font-bold mt-1">{project.title}</h3>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <Image
+            src={project.src}
+            alt={project.title}
+            fill
+            sizes={CARD_SIZES}
+            priority={eager}
+            loading={eager ? undefined : 'lazy'}
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.category}</span>
+              <h3 className="text-offwhite font-serif text-xl font-bold mt-1">{project.title}</h3>
+            </div>
+          </div>
+        </>
+      )}
+    </button>
+  )
+}
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [modalImageIndex, setModalImageIndex] = useState(0)
 
   const filteredProjects = activeCategory === 'All'
     ? projects
     : projects.filter(p => p.category === activeCategory)
 
+  const galleryImages = selectedProject?.images
+  const totalImages = galleryImages?.length ?? 0
+
+  const goPrev = () => {
+    if (!totalImages) return
+    setModalImageIndex((i) => (i - 1 + totalImages) % totalImages)
+  }
+  const goNext = () => {
+    if (!totalImages) return
+    setModalImageIndex((i) => (i + 1) % totalImages)
+  }
+
+  useEffect(() => {
+    setModalImageIndex(0)
+  }, [selectedProject])
+
   useEffect(() => {
     if (!selectedProject) return
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setSelectedProject(null)
+      if (galleryImages) {
+        if (e.key === 'ArrowLeft') goPrev()
+        if (e.key === 'ArrowRight') goNext()
+      }
     }
     window.addEventListener('keydown', handleKey)
     const prevOverflow = document.body.style.overflow
@@ -46,6 +209,7 @@ export default function GalleryPage() {
       window.removeEventListener('keydown', handleKey)
       document.body.style.overflow = prevOverflow
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedProject])
 
   return (
@@ -93,55 +257,7 @@ export default function GalleryPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project, index) => (
               <AnimatedSection key={project.id} animation="scale" delay={index * 100}>
-                <button
-                  onClick={() => setSelectedProject(project)}
-                  className="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-md w-full text-left"
-                >
-                  {project.before ? (
-                    <>
-                      {/* After (default) */}
-                      <Image
-                        src={project.src}
-                        alt={`${project.title} — after`}
-                        fill
-                        className="object-cover transition-opacity duration-700 ease-in-out opacity-100 group-hover:opacity-0"
-                      />
-                      {/* Before (hover) */}
-                      <Image
-                        src={project.before}
-                        alt={`${project.title} — before`}
-                        fill
-                        className="object-cover transition-[opacity,transform] duration-700 ease-in-out scale-105 group-hover:scale-100 opacity-0 group-hover:opacity-100"
-                      />
-                      {/* After / Before badge */}
-                      <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-offwhite/90 text-dark text-xs font-medium tracking-wider uppercase shadow-sm z-10">
-                        <span className="inline-block transition-opacity duration-500 group-hover:opacity-0">After</span>
-                        <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">Before</span>
-                      </span>
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="absolute bottom-0 left-0 right-0 p-6">
-                          <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.category}</span>
-                          <h3 className="text-offwhite font-serif text-xl font-bold mt-1">{project.title}</h3>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <Image
-                        src={project.src}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-0 left-0 right-0 p-6">
-                          <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.category}</span>
-                          <h3 className="text-offwhite font-serif text-xl font-bold mt-1">{project.title}</h3>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </button>
+                <GalleryCard project={project} onOpen={() => setSelectedProject(project)} eager={index < 3} />
               </AnimatedSection>
             ))}
           </div>
@@ -169,15 +285,53 @@ export default function GalleryPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className={cn(
-              "relative",
-              selectedProject.final ? "aspect-[21/9] bg-cream/40" : "aspect-video"
+              "relative group",
+              selectedProject.final ? "aspect-[21/9] bg-cream/40" : "aspect-video bg-dark/5"
             )}>
               <Image
-                src={selectedProject.final ?? selectedProject.src}
+                src={
+                  galleryImages
+                    ? galleryImages[modalImageIndex]
+                    : selectedProject.final ?? selectedProject.src
+                }
                 alt={selectedProject.title}
                 fill
+                priority
+                sizes="(max-width: 1280px) 95vw, 1280px"
                 className={selectedProject.final ? "object-contain" : "object-cover"}
+                key={galleryImages ? galleryImages[modalImageIndex] : selectedProject.src}
               />
+              {galleryImages && totalImages > 1 && (
+                <>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); goPrev() }}
+                    aria-label="Previous image"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-offwhite/85 hover:bg-offwhite text-dark flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); goNext() }}
+                    aria-label="Next image"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-offwhite/85 hover:bg-offwhite text-dark flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 px-3 py-1.5 rounded-full bg-dark/40 backdrop-blur-sm">
+                    {galleryImages.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={(e) => { e.stopPropagation(); setModalImageIndex(i) }}
+                        aria-label={`Go to image ${i + 1}`}
+                        className={cn(
+                          "h-2 rounded-full bg-offwhite transition-all duration-500",
+                          i === modalImageIndex ? "w-6 opacity-100" : "w-2 opacity-60 hover:opacity-90"
+                        )}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
             <div className="p-6">
               <span className="text-sage text-xs font-medium uppercase tracking-wider">{selectedProject.category}</span>

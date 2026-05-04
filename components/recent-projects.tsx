@@ -4,12 +4,79 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { X } from 'lucide-react'
 import { AnimatedSection } from '@/components/animated-section'
+import { cn } from '@/lib/utils'
 
 type Project = {
   after: string
   before: string
   final: string
   alt: string
+}
+
+function ProjectCard({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
+  const [showingBefore, setShowingBefore] = useState(false)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowingBefore((s) => !s)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label={`Open ${project.alt}`}
+      className="group relative aspect-[4/3] w-full rounded-xl overflow-hidden shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-sage bg-cream/30"
+    >
+      <Image
+        src={project.after}
+        alt={`${project.alt} — after`}
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+        priority
+        className={cn(
+          "object-cover transition-opacity duration-1000 ease-in-out",
+          showingBefore ? "opacity-0" : "opacity-100"
+        )}
+      />
+      <Image
+        src={project.before}
+        alt={`${project.alt} — before`}
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+        priority
+        className={cn(
+          "object-cover transition-opacity duration-1000 ease-in-out",
+          showingBefore ? "opacity-100" : "opacity-0"
+        )}
+      />
+      <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-offwhite/90 text-dark text-xs font-medium tracking-wider uppercase shadow-sm min-w-[64px] text-center">
+        <span
+          className={cn(
+            "inline-block transition-opacity duration-700",
+            showingBefore ? "opacity-0" : "opacity-100"
+          )}
+        >
+          After
+        </span>
+        <span
+          className={cn(
+            "absolute inset-0 flex items-center justify-center transition-opacity duration-700",
+            showingBefore ? "opacity-100" : "opacity-0"
+          )}
+        >
+          Before
+        </span>
+      </span>
+      <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/30 transition-colors duration-500 flex items-end justify-center p-4">
+        <span className="text-offwhite font-medium text-sm tracking-wide opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+          Click to view full project
+        </span>
+      </div>
+    </button>
+  )
 }
 
 const projects: Project[] = [
@@ -55,40 +122,7 @@ export function RecentProjects() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {projects.map((project, index) => (
           <AnimatedSection key={project.after} animation="scale" delay={index * 100}>
-            <button
-              type="button"
-              onClick={() => setOpenIndex(index)}
-              aria-label={`Open ${project.alt}`}
-              className="group relative aspect-[4/3] w-full rounded-xl overflow-hidden shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-sage"
-            >
-              {/* After image (default) */}
-              <Image
-                src={project.after}
-                alt={`${project.alt} — after`}
-                fill
-                className="object-cover transition-opacity duration-700 ease-in-out opacity-100 group-hover:opacity-0"
-              />
-              {/* Before image (revealed on hover) */}
-              <Image
-                src={project.before}
-                alt={`${project.alt} — before`}
-                fill
-                className="object-cover transition-transform duration-700 ease-in-out scale-105 group-hover:scale-100 opacity-0 group-hover:opacity-100 [transition-property:opacity,transform]"
-              />
-
-              {/* Label badge */}
-              <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-offwhite/90 text-dark text-xs font-medium tracking-wider uppercase shadow-sm transition-all duration-500">
-                <span className="inline-block transition-opacity duration-500 group-hover:opacity-0">After</span>
-                <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">Before</span>
-              </span>
-
-              {/* Subtle overlay + CTA */}
-              <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/30 transition-colors duration-500 flex items-end justify-center p-4">
-                <span className="text-offwhite font-medium text-sm tracking-wide opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-                  Click to view full project
-                </span>
-              </div>
-            </button>
+            <ProjectCard project={project} index={index} onOpen={() => setOpenIndex(index)} />
           </AnimatedSection>
         ))}
       </div>
@@ -123,6 +157,7 @@ export function RecentProjects() {
               src={projects[openIndex].final}
               alt={`${projects[openIndex].alt} — final`}
               fill
+              sizes="(max-width: 1280px) 95vw, 1280px"
               className="object-contain bg-dark"
               priority
             />
