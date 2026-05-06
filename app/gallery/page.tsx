@@ -5,28 +5,29 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { AnimatedSection } from '@/components/animated-section'
-import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, X, ChevronLeft, ChevronRight, MapPin } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const categories = ['All', 'Landscape Design', 'Gardens', 'Maintenance']
+const categories = ['All', 'Garden Maintenance', 'Lawn Care', 'Aeration & Seeding', 'Soil & Mulch Installation']
 
 type Project = {
   id: number
   src: string
   title: string
-  category: string
+  categories: string[]
   description: string
+  location: string
   before?: string
   final?: string
   images?: string[]
 }
 
 const projects: Project[] = [
-  { id: 7, src: '/images/gallery/After1.jpg', before: '/images/gallery/Before1.jpeg', final: '/images/gallery/Final1.jpg', title: 'Garden Refresh & Cleanup', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
-  { id: 8, src: '/images/gallery/After2.jpg', before: '/images/gallery/Before2.jpeg', final: '/images/gallery/Final2.jpg', title: 'Lawn & Bed Restoration', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
-  { id: 9, src: '/images/gallery/After3.jpg', before: '/images/gallery/Before3.jpeg', final: '/images/gallery/final3.jpg', title: 'Yard Tidy-up & Pruning', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
-  { id: 10, src: '/images/gallery/After4.jpg', before: '/images/gallery/Before4.jpg', final: '/images/gallery/Final4.jpg', title: 'Garden Revival', category: 'Maintenance', description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.' },
-  { id: 11, src: '/images/gallery/After5.jpg', images: ['/images/gallery/After5.jpg', '/images/gallery/After6.jpg', '/images/gallery/After7.jpg'], title: 'Lawn Aeration, Overseeding & Fertilization', category: 'Maintenance', description: 'Reviving tired lawns with professional aeration, overseeding, and fertilization — for thicker, greener, healthier grass that lasts all season.' },
+  { id: 7, src: '/images/gallery/After1.jpg', before: '/images/gallery/Before1.jpeg', final: '/images/gallery/Final1.jpg', title: 'Garden Refresh & Cleanup', categories: ['Garden Maintenance', 'Lawn Care'], description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.', location: 'Kerrisdale Neighborhood' },
+  { id: 8, src: '/images/gallery/After2.jpg', before: '/images/gallery/Before2.jpeg', final: '/images/gallery/Final2.jpg', title: 'Lawn & Bed Restoration', categories: ['Garden Maintenance', 'Lawn Care'], description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.', location: 'Kerrisdale Neighborhood' },
+  { id: 9, src: '/images/gallery/After3.jpg', before: '/images/gallery/Before3.jpeg', final: '/images/gallery/final3.jpg', title: 'Yard Tidy-up & Pruning', categories: ['Garden Maintenance', 'Lawn Care'], description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.', location: 'Kerrisdale Neighborhood' },
+  { id: 10, src: '/images/gallery/After4.jpg', before: '/images/gallery/Before4.jpg', final: '/images/gallery/Final4.jpg', title: 'Garden Revival', categories: ['Lawn Care', 'Aeration & Seeding'], description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.', location: 'Richmond' },
+  { id: 11, src: '/images/gallery/After5.jpg', images: ['/images/gallery/After5.jpg', '/images/gallery/After6.jpg', '/images/gallery/After7.jpg'], title: 'Lawn Aeration, Overseeding & Fertilization', categories: ['Lawn Care', 'Aeration & Seeding'], description: 'Reviving tired lawns with professional aeration, overseeding, and fertilization — for thicker, greener, healthier grass that lasts all season.', location: 'Richmond' },
 ]
 
 const CARD_SIZES = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -86,8 +87,7 @@ function GalleryCard({ project, onOpen, eager }: { project: Project; onOpen: () 
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-0 left-0 right-0 p-6 pb-10">
-              <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.category}</span>
-              <h3 className="text-offwhite font-serif text-xl font-bold mt-1">{project.title}</h3>
+              <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.categories.join(' · ')}</span>
             </div>
           </div>
         </>
@@ -140,8 +140,7 @@ function GalleryCard({ project, onOpen, eager }: { project: Project; onOpen: () 
           </span>
           <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             <div className="absolute bottom-0 left-0 right-0 p-6">
-              <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.category}</span>
-              <h3 className="text-offwhite font-serif text-xl font-bold mt-1">{project.title}</h3>
+              <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.categories.join(' · ')}</span>
             </div>
           </div>
         </>
@@ -158,8 +157,7 @@ function GalleryCard({ project, onOpen, eager }: { project: Project; onOpen: () 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-0 left-0 right-0 p-6">
-              <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.category}</span>
-              <h3 className="text-offwhite font-serif text-xl font-bold mt-1">{project.title}</h3>
+              <span className="text-sage text-xs font-medium uppercase tracking-wider">{project.categories.join(' · ')}</span>
             </div>
           </div>
         </>
@@ -175,7 +173,7 @@ export default function GalleryPage() {
 
   const filteredProjects = activeCategory === 'All'
     ? projects
-    : projects.filter(p => p.category === activeCategory)
+    : projects.filter(p => p.categories.includes(activeCategory))
 
   const galleryImages = selectedProject?.images
   const totalImages = galleryImages?.length ?? 0
@@ -333,10 +331,11 @@ export default function GalleryPage() {
                 </>
               )}
             </div>
-            <div className="p-6">
-              <span className="text-sage text-xs font-medium uppercase tracking-wider">{selectedProject.category}</span>
-              <h3 className="font-serif text-2xl font-bold text-dark mt-1 mb-2">{selectedProject.title}</h3>
-              <p className="text-olive">{selectedProject.description}</p>
+            <div className="p-6 flex items-center justify-center gap-2.5">
+              <MapPin className="w-5 h-5 text-sage flex-shrink-0" />
+              <span className="font-serif text-lg md:text-xl font-bold text-dark">
+                {selectedProject.location}
+              </span>
             </div>
           </div>
         </div>

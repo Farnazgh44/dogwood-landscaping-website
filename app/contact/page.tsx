@@ -8,12 +8,13 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent } from '@/components/ui/card'
 import { AnimatedSection } from '@/components/animated-section'
-import { Mail, Phone, Clock, Send, CheckCircle2, Instagram, Youtube } from 'lucide-react'
+import { Mail, Phone, Clock, Send, CheckCircle2, Instagram, Youtube, MapPin } from 'lucide-react'
 
 const contactInfo = [
-  { icon: Phone, label: 'Phone', value: '(604) 340-5859', href: 'tel:+16043405859' },
-  { icon: Mail, label: 'Email', value: 'dogwoodlandgardening@gmail.com', href: 'mailto:dogwoodlandgardening@gmail.com' },
-  { icon: Clock, label: 'Hours', value: 'Mon-Fri: 8am-4pm', href: '#' },
+  { icon: Phone, label: 'Phone', value: '(604) 340-5859', href: 'tel:+16043405859', external: false },
+  { icon: Mail, label: 'Email', value: 'dogwoodlandgardening@gmail.com', href: 'mailto:dogwoodlandgardening@gmail.com', external: false },
+  { icon: Clock, label: 'Hours', value: 'Mon-Fri: 8am-4pm', href: '#', external: false },
+  { icon: MapPin, label: 'Find Us On', value: 'Google Maps', href: 'https://maps.app.goo.gl/kNch99uUDyY3KRYB9', external: true },
 ]
 
 const socialLinks = [
@@ -185,6 +186,8 @@ export default function ContactPage() {
                       <a
                         key={info.label}
                         href={info.href}
+                        target={info.external ? '_blank' : undefined}
+                        rel={info.external ? 'noopener noreferrer' : undefined}
                         className="flex items-start gap-4 p-4 bg-cream/30 rounded-lg hover:bg-cream/50 transition-colors"
                       >
                         <div className="w-10 h-10 bg-sage/10 rounded-full flex items-center justify-center flex-shrink-0">
@@ -244,6 +247,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
     </>
   )
 }

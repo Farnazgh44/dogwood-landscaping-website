@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Instagram, Mail, Phone, Youtube } from 'lucide-react'
+import { Instagram, Mail, Phone, Youtube, MapPin } from 'lucide-react'
 
 const quickLinks = [
   { href: '/services', label: 'Services' },
@@ -103,6 +103,17 @@ export function Footer() {
                 <Mail size={18} className="text-sage flex-shrink-0" />
                 <a href="mailto:dogwoodlandgardening@gmail.com" className="hover:text-sage transition-colors">
                   dogwoodlandgardening@gmail.com
+                </a>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-cream/80">
+                <MapPin size={18} className="text-sage flex-shrink-0" />
+                <a
+                  href="https://maps.app.goo.gl/kNch99uUDyY3KRYB9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-sage transition-colors"
+                >
+                  Google Maps
                 </a>
               </li>
               <li className="text-sm text-cream/80 mt-4">
