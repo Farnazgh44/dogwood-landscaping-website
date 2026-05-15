@@ -6,8 +6,7 @@ const quickLinks = [
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'About Us' },
   { href: '/gallery', label: 'Gallery' },
-  // TESTIMONIALS HIDDEN — uncomment to restore:
-  // { href: '/testimonials', label: 'Testimonials' },
+  { href: '/testimonials', label: 'Testimonials' },
   { href: '/contact', label: 'Contact' },
   { href: '/schedule', label: 'Book Now' },
 ]

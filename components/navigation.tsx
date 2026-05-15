@@ -10,8 +10,7 @@ import { cn } from '@/lib/utils'
 const navLinks = [
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
-  // TESTIMONIALS HIDDEN — uncomment to restore:
-  // { href: '/testimonials', label: 'Testimonials' },
+  { href: '/testimonials', label: 'Testimonials' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/contact', label: 'Contact' },
   { href: '/schedule', label: 'Book Now' },

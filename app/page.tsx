@@ -6,6 +6,7 @@ import { AnimatedSection } from '@/components/animated-section'
 import { Leaf, TreeDeciduous, Scissors, Sparkles, ArrowRight, Star, CheckCircle2, Layers } from 'lucide-react'
 import { PromoBanner } from '@/components/promo-banner'
 import { RecentProjects } from '@/components/recent-projects'
+import { TestimonialsCarousel } from '@/components/testimonials-carousel'
 
 const services = [
   {
@@ -234,27 +235,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TESTIMONIAL PREVIEW — HIDDEN (re-enable when ready)
-      <section className="py-20 bg-olive">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fade-up" className="max-w-3xl mx-auto text-center">
-            <div className="flex justify-center gap-1 mb-6">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-6 h-6 text-cream fill-current" />
-              ))}
-            </div>
-            <blockquote className="font-serif text-2xl md:text-3xl text-offwhite mb-6 leading-relaxed">
-              &quot;Dogwood transformed our backyard into an absolute paradise. Their attention to
-              detail and creative vision exceeded all our expectations.&quot;
-            </blockquote>
-            <cite className="text-cream not-italic">
-              <span className="font-bold">Sarah Mitchell</span>
-              <span className="block text-sm text-cream/70">Portland, OR</span>
-            </cite>
-          </AnimatedSection>
-        </div>
-      </section>
-      */}
+      {/* TESTIMONIAL PREVIEW */}
+      <TestimonialsCarousel />
 
       {/* CTA Section */}
       <section className="py-20 bg-sage">
