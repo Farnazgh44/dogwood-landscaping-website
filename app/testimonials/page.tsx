@@ -19,7 +19,7 @@ const testimonials = [
   },
   {
     name: 'Rachel Miller Yasser',
-    location: 'Richmond, BC',
+    location: 'Vancouver, BC',
     rating: 5,
     text: 'Farzam will go above and beyond to ensure your lawn looks spotless! He is responsive, reliable and professional. I highly recommend for lawn service.',
   },
@@ -66,7 +66,6 @@ export default function TestimonialsPage() {
                     <p className="text-olive mb-6 leading-relaxed">{testimonial.text}</p>
                     <div className="border-t border-cream pt-4 mt-auto">
                       <p className="font-serif font-bold text-dark">{testimonial.name}</p>
-                      <p className="text-sm text-olive">{testimonial.location}</p>
                     </div>
                   </CardContent>
                 </Card>
