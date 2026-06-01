@@ -72,9 +72,10 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
                   <Image
-                    src="/About.png"
+                    src="/About.jpg"
                     alt="Our team at work"
                     fill
+                    priority
                     className="object-cover"
                   />
                 </div>
@@ -91,7 +92,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-olive leading-relaxed">
                 <p>
-                  At Dogwood Landscaping &amp; Gardening, landscaping is more than a service—it&apos;s a genuine
+                  At Dogwood Landscaping &amp; Gardening, landscaping is more than a service, it&apos;s a genuine
                   passion for creating and working within outdoor spaces. Every project is approached with
                   care, creativity, and attention to detail, combining hands-on craftsmanship with
                   thoughtful design.

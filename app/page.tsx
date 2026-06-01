@@ -186,9 +186,10 @@ export default function HomePage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
                   <Image
-                    src="/Crafting.png"
+                    src="/Crafting.jpg"
                     alt="Our landscaping work"
                     fill
+                    priority
                     className="object-cover"
                   />
                 </div>
