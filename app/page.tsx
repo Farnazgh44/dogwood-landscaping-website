@@ -72,14 +72,9 @@ export default function HomePage() {
             </div>
           </AnimatedSection>
           
-          <AnimatedSection animation="fade-up" delay={150}>
-            <div className="mb-8">
-              <PromoBanner />
-            </div>
-          </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={200}>
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance">
+            <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
               <span style={{ color: '#fffbf8' }}>Precision in the Mud,</span>
               <span className="block" style={{ color: '#e4aeb5' }}>Perfection in the Yard</span>
             </h1>
@@ -107,12 +102,6 @@ export default function HomePage() {
           </AnimatedSection>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-offwhite/50 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-2 bg-offwhite/50 rounded-full animate-pulse" />
-          </div>
-        </div>
       </section>
 
 

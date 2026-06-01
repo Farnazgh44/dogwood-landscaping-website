@@ -72,7 +72,7 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
                   <Image
-                    src="/images/gallery/project-4.jpg"
+                    src="/About.png"
                     alt="Our team at work"
                     fill
                     className="object-cover"

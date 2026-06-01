@@ -12,6 +12,12 @@ export const metadata: Metadata = {
 
 const testimonials = [
   {
+    name: 'Lulu Wang',
+    location: 'Vancouver, BC',
+    rating: 5,
+    text: "Farzam goes above and beyond for his services, and it certainly shows with the work he did for us! Will definitely recommend his services to anyone 😊 …",
+  },
+  {
     name: 'Amytis',
     location: 'Vancouver, BC',
     rating: 5,

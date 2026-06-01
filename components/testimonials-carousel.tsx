@@ -16,6 +16,11 @@ type Testimonial = {
 
 const testimonials: Testimonial[] = [
   {
+    text: "Farzam goes above and beyond for his services, and it certainly shows with the work he did for us! Will definitely recommend his services to anyone 😊 …",
+    name: "Lulu Wang",
+    rating: 5,
+  },
+  {
     text: "Very skilled and professional, they've done soil and plants installation for my yard and the results is neat and tidy. Pricing is also very reasonable, they even had a promotion which made the service beyond worth it! I'm definitely gonna ask them for more services since they're also a local business I feel good to support!",
     name: "Amytis",
     rating: 5,

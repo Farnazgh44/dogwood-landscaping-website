@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { AnimatedSection } from '@/components/animated-section'
-import { ArrowRight, X, ChevronLeft, ChevronRight, MapPin } from 'lucide-react'
+import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const categories = ['All', 'Garden Maintenance', 'Lawn Care', 'Aeration & Seeding', 'Soil & Mulch Installation']
@@ -23,6 +23,8 @@ type Project = {
 }
 
 const projects: Project[] = [
+  { id: 13, src: '/images/gallery/After9.png', before: '/images/gallery/Before6.jpg', final: '/images/gallery/Final6.jpg', title: 'Yard Cleanup & Restoration', categories: ['Garden Maintenance', 'Lawn Care'], description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.', location: 'Vancouver' },
+  { id: 12, src: '/images/gallery/After8.png', before: '/images/gallery/Before5.jpg', final: '/images/gallery/Final5.jpg', title: 'Garden Transformation', categories: ['Garden Maintenance'], description: 'General gardening including debris and leaves clean-up, pruning, trimming and weeding.', location: 'Vancouver' },
   { id: 7, src: '/images/gallery/After1.jpg', before: '/images/gallery/Before1.jpeg', final: '/images/gallery/Final1.jpg', title: 'Garden Refresh & Cleanup', categories: ['Garden Maintenance', 'Lawn Care'], description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.', location: 'Kerrisdale Neighborhood' },
   { id: 8, src: '/images/gallery/After2.jpg', before: '/images/gallery/Before2.jpeg', final: '/images/gallery/Final2.jpg', title: 'Lawn & Bed Restoration', categories: ['Garden Maintenance', 'Lawn Care'], description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.', location: 'Kerrisdale Neighborhood' },
   { id: 9, src: '/images/gallery/After3.jpg', before: '/images/gallery/Before3.jpeg', final: '/images/gallery/final3.jpg', title: 'Yard Tidy-up & Pruning', categories: ['Garden Maintenance', 'Lawn Care'], description: 'General gardening including lawn care, debris and leaves clean-up, pruning, trimming and weeding.', location: 'Kerrisdale Neighborhood' },
@@ -330,12 +332,6 @@ export default function GalleryPage() {
                   </div>
                 </>
               )}
-            </div>
-            <div className="p-6 flex items-center justify-center gap-2.5">
-              <MapPin className="w-5 h-5 text-sage flex-shrink-0" />
-              <span className="font-serif text-lg md:text-xl font-bold text-dark">
-                {selectedProject.location}
-              </span>
             </div>
           </div>
         </div>

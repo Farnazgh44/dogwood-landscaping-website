@@ -81,15 +81,15 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
 
 const projects: Project[] = [
   {
-    after: '/images/gallery/After1.jpg',
-    before: '/images/gallery/Before1.jpeg',
-    final: '/images/gallery/Final1.jpg',
+    after: '/images/gallery/After9.png',
+    before: '/images/gallery/Before6.jpg',
+    final: '/images/gallery/Final6.jpg',
     alt: 'Project 1',
   },
   {
-    after: '/images/gallery/After2.jpg',
-    before: '/images/gallery/Before2.jpeg',
-    final: '/images/gallery/Final2.jpg',
+    after: '/images/gallery/After8.png',
+    before: '/images/gallery/Before5.jpg',
+    final: '/images/gallery/Final5.jpg',
     alt: 'Project 2',
   },
   {
