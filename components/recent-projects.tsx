@@ -83,13 +83,13 @@ const projects: Project[] = [
   {
     after: '/images/gallery/After9.png',
     before: '/images/gallery/Before6.jpg',
-    final: '/images/gallery/Final6.jpg',
+    final: '/images/gallery/FinalUpdate6.jpg',
     alt: 'Project 1',
   },
   {
     after: '/images/gallery/After8.png',
     before: '/images/gallery/Before5.jpg',
-    final: '/images/gallery/Final5.jpg',
+    final: '/images/gallery/FinalUpdate5.jpg',
     alt: 'Project 2',
   },
   {
